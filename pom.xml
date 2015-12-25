@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.tuxdevelop</groupId>
+	<artifactId>spring-cloud-demo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>spring-cloud-demo</name>
+
+	<modules>
+		<module>spring-cloud-demo-common</module>
+		<module>spring-cloud-demo-config-server</module>
+		<module>spring-cloud-demo-eureka-sever</module>
+		<module>spring-cloud-demo-order-service</module>
+	</modules>
+
+	<properties>
+		<platform-bom.version>2.0.1.RELEASE</platform-bom.version>
+		<spring-cloud-config.version>1.0.2.RELEASE</spring-cloud-config.version>
+		<spring-cloud-netflix.version>1.0.3.RELEASE</spring-cloud-netflix.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- platform bom -->
+			<dependency>
+				<groupId>io.spring.platform</groupId>
+				<artifactId>platform-bom</artifactId>
+				<version>${platform-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- spring cloud -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-config</artifactId>
+				<version>${spring-cloud-config.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- spring cloud netflix -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-netflix</artifactId>
+				<version>${spring-cloud-netflix.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<target>1.8</target>
+					<source>1.8</source>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
