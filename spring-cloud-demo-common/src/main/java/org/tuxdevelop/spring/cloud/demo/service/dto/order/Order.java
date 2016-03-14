@@ -1,16 +1,16 @@
 package org.tuxdevelop.spring.cloud.demo.service.dto.order;
 
-import java.util.Collection;
-
 import lombok.Data;
+import org.tuxdevelop.spring.cloud.demo.service.dto.customer.Customer;
+
+import java.util.Collection;
 
 @Data
 public class Order {
-	
-	private Long orderId;
-	private String customerNumber;
-	private String isoCountryCode;
-	private Collection<OrderItem> orderItems;
-	private Double totalPrice;
+
+    private Long orderId;
+    private Customer customer;
+    private Collection<OrderItem> orderItems;
+    private Double totalPrice;
 
 }
