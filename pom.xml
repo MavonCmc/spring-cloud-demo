@@ -13,6 +13,7 @@
         <module>spring-cloud-demo-eureka-server</module>
         <module>spring-cloud-demo-order-service</module>
         <module>spring-cloud-demo-customer-service</module>
+        <module>spring-cloud-demo-zuul</module>
     </modules>
 
     <properties>
