@@ -1,4 +1,4 @@
-= Spring Cloude Demo Project
+= Spring Cloud Demo Project
 
 _Work in Progress_
 
