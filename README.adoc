@@ -2,7 +2,7 @@
 
 _Work in Progress_
 
-Demo Project to illustrate the Spring Cloud Feature within a distributed System.
+Demo Project to illustrate the Spring Cloud Features within a distributed System.
 
 == Components
 
