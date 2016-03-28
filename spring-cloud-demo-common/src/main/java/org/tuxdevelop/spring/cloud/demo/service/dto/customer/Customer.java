@@ -1,18 +1,18 @@
 package org.tuxdevelop.spring.cloud.demo.service.dto.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.tuxdevelop.spring.cloud.demo.service.dto.common.CommonPojo;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Customer extends CommonPojo {
 
-    private Long customerNumber;
     private String firstName;
     private String lastName;
     private String isoCountryCode;
-    private String emailAddresss;
+    private String emailAddress;
 
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/layout :: header"/>
+<body>
+<div th:include="fragments/layout :: menu"/>
+<div class="viewport">
+    <div class="container content">
+        <div class="row-fluid">
+            <table class="table boxed">
+                <thead>
+                <tr>
+                    <th colspan="1">
+                        Registration
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <table class="table table-hover boxed table-striped">
+                            <form id="registrationForm" th:action="@{registrations}"
+                                  th:object="${registrationModel}" action="#" method="post">
+                                <tr>
+                                    <td>
+                                        <label for="userName">
+                                            User Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="userName" type="text"
+                                               th:value="*{registration.login.userName}"
+                                               th:field="*{registration.login.userName}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="password">
+                                            Password
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="password" type="password"
+                                               th:value="*{registration.login.password}"
+                                               th:field="*{registration.login.password}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="firstName">
+                                            First Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="firstName" type="text"
+                                               th:value="*{customer.firstName}" th:field="*{customer.firstName}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="lastName">
+                                            Last Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="lastName" type="text"
+                                               th:value="*{customer.lastName}" th:field="*{customer.lastName}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="isoCountryCode">
+                                            ISO Country Code
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="isoCountryCode" type="text"
+                                               th:value="*{customer.isoCountryCode}"
+                                               th:field="*{customer.isoCountryCode}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="emailAddress">
+                                            Email Address
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="emailAddress" type="text"
+                                               th:value="*{customer.emailAddress}"
+                                               th:field="*{customer.emailAddress}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="submit" class="btn btn-success btn-small">Register
+                                        </button>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </form>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

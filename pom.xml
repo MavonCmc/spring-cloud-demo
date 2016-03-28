@@ -14,6 +14,8 @@
         <module>spring-cloud-demo-order-service</module>
         <module>spring-cloud-demo-customer-service</module>
         <module>spring-cloud-demo-zuul</module>
+        <module>spring-cloud-demo-product-service</module>
+        <module>spring-cloud-demo-shop</module>
     </modules>
 
     <properties>

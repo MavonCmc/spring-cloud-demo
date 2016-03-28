@@ -1,15 +1,18 @@
 package org.tuxdevelop.spring.cloud.demo.service.dto.order;
 
-import lombok.Data;
-import org.tuxdevelop.spring.cloud.demo.service.dto.customer.Customer;
+import lombok.*;
+import org.tuxdevelop.spring.cloud.demo.service.dto.common.CommonPojo;
 
 import java.util.Collection;
 
 @Data
-public class Order {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
+public class Order extends CommonPojo {
 
-    private Long orderId;
-    private Customer customer;
+    private Long customerId;
     private Collection<OrderItem> orderItems;
     private Double totalPrice;
 

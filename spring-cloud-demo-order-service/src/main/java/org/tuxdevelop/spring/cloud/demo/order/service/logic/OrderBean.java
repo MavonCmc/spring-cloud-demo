@@ -6,26 +6,32 @@ import org.springframework.stereotype.Component;
 import org.tuxdevelop.spring.cloud.demo.order.service.repository.OrderRepository;
 import org.tuxdevelop.spring.cloud.demo.service.dto.order.Order;
 
+import java.util.List;
+
 @Component
 public class OrderBean implements InitializingBean {
 
-	private final OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-	@Autowired
-	public OrderBean(final OrderRepository orderRepository) {
-		this.orderRepository = orderRepository;
-	}
+    @Autowired
+    public OrderBean(final OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
-	public Order save(final Order order) {
-		return orderRepository.save(order);
-	}
+    public Order save(final Order order) {
+        return orderRepository.save(order);
+    }
 
-	public Order get(final Long orderId) {
-		return orderRepository.get(orderId);
-	}
+    public Order get(final Long orderId) {
+        return orderRepository.findById(orderId);
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		assert orderRepository != null;
-	}
+    public List<Order> getByCustomerNumber(final Long customerNumber) {
+        return null;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        assert orderRepository != null;
+    }
 }
