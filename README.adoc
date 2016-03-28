@@ -1,0 +1,15 @@
+= Spring Cloude Demo Project
+
+_Work in Progress_
+
+Demo Project to illustrate the Spring Cloud Feature within a distributed System.
+
+== Components
+
+* Config Service
+* Eureka Discovery Service
+* Zuul Gateway Service
+* Customer Service
+* Order Service
+* Product Service
+* Shop System
