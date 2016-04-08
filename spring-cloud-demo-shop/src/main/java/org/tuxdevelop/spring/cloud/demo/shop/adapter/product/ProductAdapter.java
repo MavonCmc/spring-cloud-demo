@@ -2,6 +2,7 @@ package org.tuxdevelop.spring.cloud.demo.shop.adapter.product;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -23,11 +24,13 @@ public class ProductAdapter extends AbstractAdapter {
         this.restTemplate = restTemplate;
     }
 
+    @Cacheable(cacheNames = "products", cacheManager = "productsCacheManager")
     public List<Product> getAllProducts() {
         final ResponseEntity<Product[]> response = restTemplate.getForEntity(BASE_URL, Product[].class);
         return Arrays.asList(response.getBody());
     }
 
+    @Cacheable(cacheNames = "products", key = "#productId", cacheManager = "productsCacheManager")
     public Product getById(final Long productId) {
         final ResponseEntity<Product> response = restTemplate.getForEntity(BASE_URL + "/{productId}", Product.class,
                 productId);

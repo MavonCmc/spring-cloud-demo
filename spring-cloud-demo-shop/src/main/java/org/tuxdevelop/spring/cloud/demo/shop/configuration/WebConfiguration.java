@@ -15,12 +15,12 @@ public class WebConfiguration {
             @Override
             public void addViewControllers(final ViewControllerRegistry viewControllerRegistry) {
                 viewControllerRegistry.addViewController("/").setViewName("index");
-                viewControllerRegistry.addViewController("index").setViewName("index");
-                viewControllerRegistry.addViewController("login").setViewName("login");
-                viewControllerRegistry.addViewController("registrations").setViewName("registrations");
-                viewControllerRegistry.addViewController("shop").setViewName("shop");
-                viewControllerRegistry.addViewController("checkout").setViewName("checkout");
-                viewControllerRegistry.addViewController("customers").setViewName("customers");
+                viewControllerRegistry.addViewController("/index").setViewName("index");
+                viewControllerRegistry.addViewController("/login").setViewName("login");
+                viewControllerRegistry.addViewController("/registrations").setViewName("registrations");
+                viewControllerRegistry.addViewController("/shop").setViewName("shop");
+                viewControllerRegistry.addViewController("/checkout").setViewName("checkout");
+                viewControllerRegistry.addViewController("/customers").setViewName("customers");
             }
         };
     }

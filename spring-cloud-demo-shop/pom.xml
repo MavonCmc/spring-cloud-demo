@@ -23,11 +23,23 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- spring context support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
         <!-- internal -->
         <dependency>
             <groupId>org.tuxdevelop</groupId>
             <artifactId>spring-cloud-demo-common</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
 

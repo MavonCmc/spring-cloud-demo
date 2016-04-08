@@ -35,24 +35,17 @@ public class ShopController {
         model.addAttribute("shoppingCard", shoppingCardModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void addProductToShoppingCard(@RequestParam("productid") final Long productId,
-                                         final Model model) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addProductToShoppingCard(@RequestParam("productid") final Long productId) {
         final Product product = productAdapter.getById(productId);
         shoppingCardModel.addProduct(product);
-        model.addAttribute("shoppingCard", shoppingCardModel);
-        final List<Product> products = productAdapter.getAllProducts();
-        model.addAttribute("products", products);
+        return "redirect:/shop";
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String removeProductFromShoppingCard(@RequestParam("productid") final Long productId,
-                                                final Model model) {
+    public String removeProductFromShoppingCard(@RequestParam("productid") final Long productId) {
         final Product product = productAdapter.getById(productId);
         shoppingCardModel.removeProduct(product);
-        model.addAttribute("shoppingCard", shoppingCardModel);
-        final List<Product> products = productAdapter.getAllProducts();
-        model.addAttribute("products", products);
-        return "shop";
+        return "redirect:/shop";
     }
 }
