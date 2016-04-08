@@ -11,6 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Login;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Registration;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.VerifiedLogin;
+import org.tuxdevelop.spring.cloud.demo.shop.adapter.AbstractAdapter;
 
 @Component
 public class RegistrationsAdapter extends AbstractAdapter {

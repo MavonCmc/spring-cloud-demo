@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.tuxdevelop.spring.cloud.demo.service.dto.customer.Customer;
+import org.tuxdevelop.spring.cloud.demo.shop.adapter.AbstractAdapter;
 
 @Component
 public class CustomerAdapter extends AbstractAdapter {

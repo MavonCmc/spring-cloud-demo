@@ -4,6 +4,77 @@
 <head th:include="fragments/layout :: header"/>
 <body>
 <div th:include="fragments/layout :: menu"/>
+<div class="viewport">
+    <div class="container content">
+        <div class="row-fluid">
+            <table class="table table-bordered table-hover boxed">
+                <thead>
+                <tr>
+                    <th colspan="4">
+                        Products
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>ProductId</th>
+                    <th>Description</th>
+                    <th colspan="2">Price</th>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}" th:field="${product.id}">Id</td>
+                    <td th:text="${product.description}" th:field="${product.description}">description</td>
+                    <td th:text="${product.price} +' €'" th:field="${product.price}">price</td>
+                    <td>
+                        <div class="pull-right">
+                            <form method="post" class="form-inline"
+                                  th:action="@{/shop(productid=${product.id})}">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover boxed">
+                <thead>
+                <tr>
+                    <th colspan="3">
+                        Shopping Card
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Product</th>
+                    <th colspan="2">Item Count</th>
+                </tr>
+                <tr th:each="productEntry : ${shoppingCard.productMap}">
+                    <td th:text="${productEntry.key.description}">description</td>
+                    <td th:text="${productEntry.value}">price</td>
+                    <td>
+                        <div class="pull-right">
+                            <form method="post" class="form-inline"
+                                  th:action="@{/shop/remove(productid=${productEntry.key.id})}">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td colspan="3" th:text="'Total Price:  ' + ${shoppingCard.totalPrice} +' €'">Total Price</td>
+                </tr>
+            </table>
+            <a role="button" href="#" class="btn btn-danger btn-sm" th:href="@{/checkout}">
+                Checkout
+            </a>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>
