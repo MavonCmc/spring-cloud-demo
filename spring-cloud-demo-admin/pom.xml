@@ -9,36 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-cloud-demo-customer-service</artifactId>
+    <artifactId>spring-cloud-demo-admin</artifactId>
 
     <dependencies>
         <!-- spring boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- internal -->
-        <dependency>
-            <groupId>org.tuxdevelop</groupId>
-            <artifactId>spring-cloud-demo-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <!-- jersey -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
         </dependency>
 
         <!-- spring cloud -->
@@ -52,12 +29,15 @@
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-        <!-- h2 -->
+        <!-- spring boot admin -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

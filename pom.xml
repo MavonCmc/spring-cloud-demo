@@ -16,6 +16,7 @@
         <module>spring-cloud-demo-zuul</module>
         <module>spring-cloud-demo-product-service</module>
         <module>spring-cloud-demo-shop</module>
+        <module>spring-cloud-demo-admin</module>
     </modules>
 
     <properties>
@@ -23,6 +24,7 @@
         <spring-cloud-config.version>1.0.4.RELEASE</spring-cloud-config.version>
         <spring-cloud-netflix.version>1.0.7.RELEASE</spring-cloud-netflix.version>
         <spring-cloud-bus-parent.version>1.0.3.RELEASE</spring-cloud-bus-parent.version>
+        <spring-boot-admin.version>1.3.2</spring-boot-admin.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +64,25 @@
                 <version>${spring-cloud-bus-parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- spring boot admin -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
         </dependencies>
 

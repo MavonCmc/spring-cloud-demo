@@ -29,13 +29,19 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
 
+        <!-- feign client -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
         <!-- internal -->
         <dependency>
             <groupId>org.tuxdevelop</groupId>
             <artifactId>spring-cloud-demo-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <!-- guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
