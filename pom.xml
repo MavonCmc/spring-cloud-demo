@@ -22,6 +22,7 @@
         <platform-bom.version>2.0.3.RELEASE</platform-bom.version>
         <spring-cloud-config.version>1.0.4.RELEASE</spring-cloud-config.version>
         <spring-cloud-netflix.version>1.0.7.RELEASE</spring-cloud-netflix.version>
+        <spring-cloud-bus-parent.version>1.0.3.RELEASE</spring-cloud-bus-parent.version>
     </properties>
 
     <dependencyManagement>
@@ -34,6 +35,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
 
             <!-- spring cloud -->
             <dependency>
@@ -49,6 +51,15 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix</artifactId>
                 <version>${spring-cloud-netflix.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring cloud bus -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-bus-parent</artifactId>
+                <version>${spring-cloud-bus-parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

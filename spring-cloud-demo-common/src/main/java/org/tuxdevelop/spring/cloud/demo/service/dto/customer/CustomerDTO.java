@@ -8,7 +8,7 @@ import org.tuxdevelop.spring.cloud.demo.service.dto.common.CommonPojo;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer extends CommonPojo {
+public class CustomerDTO extends CommonPojo {
 
     private String firstName;
     private String lastName;

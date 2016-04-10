@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.tuxdevelop.spring.cloud.demo.service.dto.customer.Customer;
+import org.tuxdevelop.spring.cloud.demo.service.dto.customer.CustomerDTO;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Login;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Registration;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.customer.CustomerAdapter;
@@ -29,7 +29,7 @@ public class RegistrationController {
 
     @RequestMapping(method = RequestMethod.GET)
     public void init(final Model model) {
-        model.addAttribute("registrationModel", new RegistrationModel(new Registration(), new Customer()));
+        model.addAttribute("registrationModel", new RegistrationModel(new Registration(), new CustomerDTO()));
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -39,8 +39,8 @@ public class RegistrationController {
         if (userNameExists) {
             throw new IllegalArgumentException("Username already exists");
         }
-        final Customer customer = customerAdapter.addCustomer(registrationModel.getCustomer());
-        registrationsAdapter.createRegistration(customer.getId(), login.getUserName(), login.getPassword());
+        final CustomerDTO customerDTO = customerAdapter.addCustomer(registrationModel.getCustomerDTO());
+        registrationsAdapter.createRegistration(customerDTO.getId(), login.getUserName(), login.getPassword());
         return "redirect:index";
     }
 

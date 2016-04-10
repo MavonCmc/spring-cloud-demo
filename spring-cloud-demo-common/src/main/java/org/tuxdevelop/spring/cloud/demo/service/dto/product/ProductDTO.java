@@ -8,7 +8,7 @@ import org.tuxdevelop.spring.cloud.demo.service.dto.common.CommonPojo;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product extends CommonPojo {
+public class ProductDTO extends CommonPojo {
 
     private String description;
     private Double price;

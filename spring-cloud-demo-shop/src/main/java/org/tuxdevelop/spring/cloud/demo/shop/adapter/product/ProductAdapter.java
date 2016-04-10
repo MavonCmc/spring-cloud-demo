@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.tuxdevelop.spring.cloud.demo.service.dto.product.Product;
+import org.tuxdevelop.spring.cloud.demo.service.dto.product.ProductDTO;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.AbstractAdapter;
 
 import java.util.Arrays;
@@ -25,14 +25,14 @@ public class ProductAdapter extends AbstractAdapter {
     }
 
     @Cacheable(cacheNames = "products", cacheManager = "productsCacheManager")
-    public List<Product> getAllProducts() {
-        final ResponseEntity<Product[]> response = restTemplate.getForEntity(BASE_URL, Product[].class);
+    public List<ProductDTO> getAllProducts() {
+        final ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(BASE_URL, ProductDTO[].class);
         return Arrays.asList(response.getBody());
     }
 
     @Cacheable(cacheNames = "products", key = "#productId", cacheManager = "productsCacheManager")
-    public Product getById(final Long productId) {
-        final ResponseEntity<Product> response = restTemplate.getForEntity(BASE_URL + "/{productId}", Product.class,
+    public ProductDTO getById(final Long productId) {
+        final ResponseEntity<ProductDTO> response = restTemplate.getForEntity(BASE_URL + "/{productId}", ProductDTO.class,
                 productId);
         return response.getBody();
     }

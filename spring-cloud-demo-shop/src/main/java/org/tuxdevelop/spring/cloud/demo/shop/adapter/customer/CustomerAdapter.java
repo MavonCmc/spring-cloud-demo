@@ -6,7 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.tuxdevelop.spring.cloud.demo.service.dto.customer.Customer;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.tuxdevelop.spring.cloud.demo.service.dto.customer.CustomerDTO;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.AbstractAdapter;
 
 @Component
@@ -22,10 +23,17 @@ public class CustomerAdapter extends AbstractAdapter {
         this.restTemplate = restTemplate;
     }
 
-    public Customer addCustomer(final Customer customer) {
-        final HttpEntity<Customer> httpEntity = new HttpEntity<>(customer, prepareHeaders());
-        final ResponseEntity<Customer> response = restTemplate.exchange(BASE_URL, HttpMethod.POST, httpEntity, Customer
+    public CustomerDTO addCustomer(final CustomerDTO customerDTO) {
+        final HttpEntity<CustomerDTO> httpEntity = new HttpEntity<>(customerDTO, prepareHeaders());
+        final ResponseEntity<CustomerDTO> response = restTemplate.exchange(BASE_URL, HttpMethod.POST, httpEntity, CustomerDTO
                 .class);
+        return response.getBody();
+    }
+
+    public CustomerDTO findCustomerByUserName(final String userName) {
+        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/search");
+        uriComponentsBuilder.queryParam("username", userName);
+        final ResponseEntity<CustomerDTO> response = restTemplate.getForEntity(uriComponentsBuilder.toUriString(), CustomerDTO.class);
         return response.getBody();
     }
 }

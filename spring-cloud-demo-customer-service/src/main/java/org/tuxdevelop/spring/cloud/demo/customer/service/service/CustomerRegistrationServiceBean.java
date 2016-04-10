@@ -2,7 +2,10 @@ package org.tuxdevelop.spring.cloud.demo.customer.service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.tuxdevelop.spring.cloud.demo.customer.service.repository.RegistrationRepository;
+import org.tuxdevelop.spring.cloud.demo.customer.service.domain.CustomerLogin;
+import org.tuxdevelop.spring.cloud.demo.customer.service.domain.CustomerRegistration;
+import org.tuxdevelop.spring.cloud.demo.customer.service.repository.CustomerLoginRepository;
+import org.tuxdevelop.spring.cloud.demo.customer.service.repository.CustomerRegistrationRepository;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Login;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.Registration;
 import org.tuxdevelop.spring.cloud.demo.service.dto.registration.VerifiedLogin;
@@ -11,11 +14,14 @@ import org.tuxdevelop.spring.cloud.demo.service.dto.registration.VerifiedLogin;
 @RequestMapping(value = "/registrations")
 public class CustomerRegistrationServiceBean {
 
-    private final RegistrationRepository registrationRepository;
+    private final CustomerRegistrationRepository customerRegistrationRepository;
+    private final CustomerLoginRepository customerLoginRepository;
 
     @Autowired
-    public CustomerRegistrationServiceBean(final RegistrationRepository registrationRepository) {
-        this.registrationRepository = registrationRepository;
+    public CustomerRegistrationServiceBean(final CustomerRegistrationRepository customerRegistrationRepository,
+                                           final CustomerLoginRepository customerLoginRepository) {
+        this.customerRegistrationRepository = customerRegistrationRepository;
+        this.customerLoginRepository = customerLoginRepository;
     }
 
 
@@ -23,28 +29,28 @@ public class CustomerRegistrationServiceBean {
     public Registration add(@RequestBody final Registration registration) {
         validateLogin(registration.getLogin());
         validateCustomerNumber(registration.getCustomerNumber());
-        if (registrationRepository.containsUserName(registration.getLogin().getUserName())) {
+        if (customerLoginRepository.findByUserName(registration.getLogin().getUserName()) != null) {
             throw new IllegalArgumentException("Username already exists");
         }
-        return registrationRepository.save(registration);
+        return customerRegistrationRepository.save(new CustomerRegistration(registration)).mapToDTO();
     }
 
     @RequestMapping(value = "logins", method = RequestMethod.GET, produces = "application/json")
     public VerifiedLogin getVerifiedLogin(@RequestParam(name = "username") final String userName) {
-        final Registration registration = registrationRepository.findRegistrationByUserName(userName);
-        if (registration == null) {
+        final CustomerRegistration customerRegistration = customerRegistrationRepository.findByCustomerLoginUserName(userName);
+        if (customerRegistration == null) {
             throw new IllegalArgumentException("Unknown username :" + userName);
         }
-        return new VerifiedLogin(userName, registration.getCustomerNumber());
+        return new VerifiedLogin(userName, customerRegistration.getCustomerNumber());
     }
 
     @RequestMapping(value = "logins/verify", method = RequestMethod.GET, produces = "application/json")
     public Boolean verifyLogin(@RequestParam(name = "username") final String userName,
                                @RequestParam(name = "password") final String password) {
-        final Login login = registrationRepository.findLoginByUserName(userName);
+        final CustomerLogin customerLogin = customerLoginRepository.findByUserName(userName);
         final Boolean result;
-        if (login != null) {
-            result = login.getPassword().equals(password);
+        if (customerLogin != null) {
+            result = customerLogin.getPassword().equals(password);
         } else {
             result = Boolean.FALSE;
         }
@@ -53,7 +59,7 @@ public class CustomerRegistrationServiceBean {
 
     @RequestMapping(value = "logins/username/exists", method = RequestMethod.GET, produces = "application/json")
     public Boolean userNameExists(@RequestParam(name = "username") final String userName) {
-        return registrationRepository.findLoginByUserName(userName) != null;
+        return customerLoginRepository.findByUserName(userName) != null;
     }
 
 

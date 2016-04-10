@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.tuxdevelop.spring.cloud.demo.service.dto.product.Product;
+import org.tuxdevelop.spring.cloud.demo.service.dto.product.ProductDTO;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.product.ProductAdapter;
 import org.tuxdevelop.spring.cloud.demo.shop.model.ShoppingCardModel;
 
@@ -30,22 +30,22 @@ public class ShopController {
     @RequestMapping(method = RequestMethod.GET)
     public void init(final Model model) {
 
-        final List<Product> products = productAdapter.getAllProducts();
-        model.addAttribute("products", products);
+        final List<ProductDTO> productDTOs = productAdapter.getAllProducts();
+        model.addAttribute("products", productDTOs);
         model.addAttribute("shoppingCard", shoppingCardModel);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProductToShoppingCard(@RequestParam("productid") final Long productId) {
-        final Product product = productAdapter.getById(productId);
-        shoppingCardModel.addProduct(product);
+        final ProductDTO productDTO = productAdapter.getById(productId);
+        shoppingCardModel.addProduct(productDTO);
         return "redirect:/shop";
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String removeProductFromShoppingCard(@RequestParam("productid") final Long productId) {
-        final Product product = productAdapter.getById(productId);
-        shoppingCardModel.removeProduct(product);
+        final ProductDTO productDTO = productAdapter.getById(productId);
+        shoppingCardModel.removeProduct(productDTO);
         return "redirect:/shop";
     }
 }

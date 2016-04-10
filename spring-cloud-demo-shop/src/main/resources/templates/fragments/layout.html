@@ -22,6 +22,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                         </button>
                     </div>
                     <ul class="nav navbar-nav navbar-right navbar-collapse collapse">
@@ -33,13 +36,13 @@
                                th:href="@{customers}">Customer Data
                             </a>
                         </li>
-                        <li th:if="${#httpServletRequest.remoteUser != null}" class="navbar-text pull-right"
-                            th:text="'Loged In as: ' + ${#httpServletRequest.remoteUser}">
-                            user name
+                        <li th:if="${#httpServletRequest.remoteUser != null}">
+                            <strong class="navbar-text"
+                                    th:text="'Signed In As: ' + ${#httpServletRequest.remoteUser}">username</strong>
                         </li>
-                        <li th:if="${#httpServletRequest.remoteUser != null}" class="navbar-text pull-right">
-                            <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
-                                <input type="submit" class="btn btn-success btn-small" value="Log out"/>
+                        <li class="navbar-text" th:if="${#httpServletRequest.remoteUser != null}">
+                            <form th:action="@{/logout}" method="post" class="form-inline">
+                                <button type="submit" class="btn btn-success btn-sm">Log Out</button>
                             </form>
                         </li>
                     </ul>

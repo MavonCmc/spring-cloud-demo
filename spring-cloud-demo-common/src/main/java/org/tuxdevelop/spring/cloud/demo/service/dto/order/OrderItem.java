@@ -2,7 +2,7 @@ package org.tuxdevelop.spring.cloud.demo.service.dto.order;
 
 import lombok.*;
 import org.tuxdevelop.spring.cloud.demo.service.dto.common.CommonPojo;
-import org.tuxdevelop.spring.cloud.demo.service.dto.product.Product;
+import org.tuxdevelop.spring.cloud.demo.service.dto.product.ProductDTO;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -11,6 +11,6 @@ import org.tuxdevelop.spring.cloud.demo.service.dto.product.Product;
 @NoArgsConstructor
 public class OrderItem extends CommonPojo {
 
-    private Product product;
+    private ProductDTO productDTO;
 
 }

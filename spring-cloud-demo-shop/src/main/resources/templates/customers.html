@@ -4,6 +4,38 @@
 <head th:include="fragments/layout :: header"/>
 <body>
 <div th:include="fragments/layout :: menu"/>
+<div class="viewport">
+    <div class="container content">
+        <div class="row-fluid">
+            <table class="table table-bordered table-hover boxed">
+                <thead>
+                <tr>
+                    <th colspan="2">
+                        Customer Master Data
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>First Name</td>
+                    <td th:text="${customer.firstName}">First Name</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td th:text="${customer.lastName}">Last Name</td>
+                </tr>
+                <tr>
+                    <td>ISO Country Code</td>
+                    <td th:text="${customer.isoCountryCode}">ISO Country Code</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td th:text="${customer.emailAddress}">Email Address</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>
