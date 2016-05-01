@@ -34,6 +34,33 @@
                 </tr>
                 </tbody>
             </table>
+            <table class="table table-bordered table-hover boxed">
+                <thead>
+                <tr>
+                    <th colspan="2">
+                        Orders
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <table class="table table-bordered table-hover boxed">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Prices</th>
+                        <th>Items</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.id}"></td>
+                        <td th:text="${order.totalPrice}"></td>
+                        <td th:text="${order.orderItems.size()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

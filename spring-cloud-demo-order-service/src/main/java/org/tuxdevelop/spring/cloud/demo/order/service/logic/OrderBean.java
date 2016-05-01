@@ -27,7 +27,7 @@ public class OrderBean implements InitializingBean {
     }
 
     public List<Order> getByCustomerNumber(final Long customerNumber) {
-        return null;
+        return orderRepository.findByCustomerNumber(customerNumber);
     }
 
     @Override

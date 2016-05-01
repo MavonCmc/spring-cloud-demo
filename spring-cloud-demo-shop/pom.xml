@@ -48,7 +48,6 @@
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
 
-
         <!-- internal -->
         <dependency>
             <groupId>org.tuxdevelop</groupId>
@@ -61,6 +60,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

@@ -20,7 +20,7 @@ public abstract class MapRepository<T extends CommonPojo> {
 
     public T save(final T entity) {
         final Long id;
-        if (findById(entity.getId()) == null) {
+        if (entity.getId() == null || findById(entity.getId()) == null) {
             id = getNextId();
             entity.setId(id);
         } else {
