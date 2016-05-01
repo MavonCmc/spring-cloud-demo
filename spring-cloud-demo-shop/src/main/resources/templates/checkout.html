@@ -4,6 +4,47 @@
 <head th:include="fragments/layout :: header"/>
 <body>
 <div th:include="fragments/layout :: menu"/>
-</body>
 
+<div class="container content">
+    <div class="row-fluid">
+        <form id="performCheckout" th:action="@{checkout}" action="#" method="post">
+            <table class="table table-bordered table-hover boxed">
+                <thead>
+                <tr>
+                    <th colspan="3">
+                        Shopping Cart
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Product</th>
+                    <th colspan="2">Item Count</th>
+                </tr>
+                <tr th:each="productEntry : ${shoppingCart.productMap}">
+                    <td th:text="${productEntry.key.description}">description</td>
+                    <td th:text="${productEntry.value}">price</td>
+                    <td>
+                        <div class="pull-right">
+                            <form method="post" class="form-inline"
+                                  th:action="@{/shop/remove(productid=${productEntry.key.id})}">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td colspan="3" th:text="'Total Price:  ' + ${shoppingCart.totalPrice} +' €'">Total Price</td>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-success btn-small">Order Now</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
 </html>

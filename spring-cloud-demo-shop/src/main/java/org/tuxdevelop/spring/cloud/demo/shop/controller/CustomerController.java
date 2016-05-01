@@ -1,7 +1,6 @@
 package org.tuxdevelop.spring.cloud.demo.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +21,9 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     public void init(final Model model) {
-        final String userName = determineUserName();
-        final CustomerDTO customerDTO = customerAdapter.findCustomerByUserName(userName);
+        final CustomerDTO customerDTO = customerAdapter.findCustomer();
         model.addAttribute("customer", customerDTO);
     }
 
-    private String determineUserName() {
-        return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
 
 }

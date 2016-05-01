@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tuxdevelop.spring.cloud.demo.service.dto.product.ProductDTO;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.product.ProductAdapter;
-import org.tuxdevelop.spring.cloud.demo.shop.model.ShoppingCardModel;
+import org.tuxdevelop.spring.cloud.demo.shop.model.ShoppingCartModel;
 
 import java.util.List;
 
@@ -19,12 +19,12 @@ import java.util.List;
 public class ShopController {
 
     private final ProductAdapter productAdapter;
-    private final ShoppingCardModel shoppingCardModel;
+    private final ShoppingCartModel shoppingCartModel;
 
     @Autowired
-    public ShopController(final ProductAdapter productAdapter, final ShoppingCardModel shoppingCardModel) {
+    public ShopController(final ProductAdapter productAdapter, final ShoppingCartModel shoppingCartModel) {
         this.productAdapter = productAdapter;
-        this.shoppingCardModel = shoppingCardModel;
+        this.shoppingCartModel = shoppingCartModel;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -32,20 +32,20 @@ public class ShopController {
 
         final List<ProductDTO> productDTOs = productAdapter.getAllProducts();
         model.addAttribute("products", productDTOs);
-        model.addAttribute("shoppingCard", shoppingCardModel);
+        model.addAttribute("shoppingCart", shoppingCartModel);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProductToShoppingCard(@RequestParam("productid") final Long productId) {
         final ProductDTO productDTO = productAdapter.getById(productId);
-        shoppingCardModel.addProduct(productDTO);
+        shoppingCartModel.addProduct(productDTO);
         return "redirect:/shop";
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String removeProductFromShoppingCard(@RequestParam("productid") final Long productId) {
         final ProductDTO productDTO = productAdapter.getById(productId);
-        shoppingCardModel.removeProduct(productDTO);
+        shoppingCartModel.removeProduct(productDTO);
         return "redirect:/shop";
     }
 }

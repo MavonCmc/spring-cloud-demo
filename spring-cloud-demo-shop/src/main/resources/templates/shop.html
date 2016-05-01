@@ -42,7 +42,7 @@
                 <thead>
                 <tr>
                     <th colspan="3">
-                        Shopping Card
+                        Shopping Cart
                     </th>
                 </tr>
                 </thead>
@@ -51,7 +51,7 @@
                     <th>Product</th>
                     <th colspan="2">Item Count</th>
                 </tr>
-                <tr th:each="productEntry : ${shoppingCard.productMap}">
+                <tr th:each="productEntry : ${shoppingCart.productMap}">
                     <td th:text="${productEntry.key.description}">description</td>
                     <td th:text="${productEntry.value}">price</td>
                     <td>
@@ -67,7 +67,7 @@
                 </tr>
                 </tbody>
                 <tr>
-                    <td colspan="3" th:text="'Total Price:  ' + ${shoppingCard.totalPrice} +' €'">Total Price</td>
+                    <td colspan="3" th:text="'Total Price:  ' + ${shoppingCart.totalPrice} +' €'">Total Price</td>
                 </tr>
             </table>
             <a role="button" href="#" class="btn btn-danger btn-sm" th:href="@{/checkout}">

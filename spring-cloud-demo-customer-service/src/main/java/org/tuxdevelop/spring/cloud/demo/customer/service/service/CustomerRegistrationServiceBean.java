@@ -1,6 +1,8 @@
 package org.tuxdevelop.spring.cloud.demo.customer.service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.tuxdevelop.spring.cloud.demo.customer.service.domain.CustomerLogin;
 import org.tuxdevelop.spring.cloud.demo.customer.service.domain.CustomerRegistration;
@@ -26,6 +28,7 @@ public class CustomerRegistrationServiceBean {
 
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_REGISTRATION')")
     public Registration add(@RequestBody final Registration registration) {
         validateLogin(registration.getLogin());
         validateCustomerNumber(registration.getCustomerNumber());
@@ -36,6 +39,8 @@ public class CustomerRegistrationServiceBean {
     }
 
     @RequestMapping(value = "logins", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_REGISTRATION')")
+    @PostAuthorize(value = "returnObject.userName == #userName")
     public VerifiedLogin getVerifiedLogin(@RequestParam(name = "username") final String userName) {
         final CustomerRegistration customerRegistration = customerRegistrationRepository.findByCustomerLoginUserName(userName);
         if (customerRegistration == null) {
@@ -45,6 +50,7 @@ public class CustomerRegistrationServiceBean {
     }
 
     @RequestMapping(value = "logins/verify", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_REGISTRATION')")
     public Boolean verifyLogin(@RequestParam(name = "username") final String userName,
                                @RequestParam(name = "password") final String password) {
         final CustomerLogin customerLogin = customerLoginRepository.findByUserName(userName);
@@ -58,6 +64,7 @@ public class CustomerRegistrationServiceBean {
     }
 
     @RequestMapping(value = "logins/username/exists", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_REGISTRATION')")
     public Boolean userNameExists(@RequestParam(name = "username") final String userName) {
         return customerLoginRepository.findByUserName(userName) != null;
     }

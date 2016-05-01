@@ -1,6 +1,7 @@
 package org.tuxdevelop.spring.cloud.demo.shop.adapter.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.tuxdevelop.spring.cloud.demo.service.dto.customer.CustomerDTO;
 import org.tuxdevelop.spring.cloud.demo.shop.adapter.client.CustomerClient;
@@ -21,5 +22,14 @@ public class CustomerAdapter {
 
     public CustomerDTO findCustomerByUserName(final String userName) {
         return customerClient.findCustomerByUserName(userName);
+    }
+
+    public CustomerDTO findCustomer() {
+        final String userName = determineUserName();
+        return findCustomerByUserName(userName);
+    }
+
+    private String determineUserName() {
+        return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

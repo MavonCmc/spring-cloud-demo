@@ -10,12 +10,12 @@ import java.util.Map;
 
 @Component
 @Scope(value = "session")
-public class ShoppingCardModel {
+public class ShoppingCartModel {
 
     @Getter
     private Map<ProductDTO, Integer> productMap;
 
-    public ShoppingCardModel() {
+    public ShoppingCartModel() {
         productMap = new HashMap<>();
     }
 
@@ -39,6 +39,10 @@ public class ShoppingCardModel {
             calcPrice += productDTO.getPrice() * entry.getValue();
         }
         return calcPrice;
+    }
+
+    public void clearOrders() {
+        productMap.clear();
     }
 
 }

@@ -31,7 +31,7 @@ public class CustomerLogicBean {
     public CustomerDTO get(final Long customerNumber) {
         final Customer customer = customerRepository.findOne(customerNumber);
         if (customer == null) {
-            throw new NoSuchCustomerException("The Customer with the customerNumber: " + customer + " does not exist");
+            throw new NoSuchCustomerException("The Customer with the customerId: " + customer + " does not exist");
         }
         return customer.mapToDTO();
     }

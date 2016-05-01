@@ -46,12 +46,12 @@ public class Customer {
     }
 
     public void validatAdd() {
-        assert customerNumber == null : "customerNumber must not be set for add!";
+        assert customerNumber == null : "customerId must not be set for add!";
         validateCommon();
     }
 
     public void validateUpdate() {
-        assert customerNumber != null : "customerNumber must not be null!";
+        assert customerNumber != null : "customerId must not be null!";
         validateCommon();
     }
 

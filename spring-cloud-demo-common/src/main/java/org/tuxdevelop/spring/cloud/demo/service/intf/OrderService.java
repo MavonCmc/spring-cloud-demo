@@ -10,14 +10,11 @@ import java.util.List;
 @Consumes("application/json")
 public interface OrderService {
 
-    @POST
-    Order save(final Order order);
-
     @GET
     @Path("/{orderid}")
     Order get(@PathParam("orderid") final Long orderId);
 
     @GET
-    @Path("/customers{customernumber}")
+    @Path("/customers/{customernumber}")
     List<Order> getByCustomerNumber(@PathParam("customernumber") final Long customerNumber);
 }

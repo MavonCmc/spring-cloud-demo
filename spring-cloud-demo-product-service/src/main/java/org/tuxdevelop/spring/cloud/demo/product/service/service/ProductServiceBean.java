@@ -2,6 +2,7 @@ package org.tuxdevelop.spring.cloud.demo.product.service.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,7 @@ public class ProductServiceBean {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_READ')")
     public List<ProductDTO> getProducts() {
         final List<Product> products = productRepository.findAll();
         final List<ProductDTO> productDTOs = new LinkedList<>();
@@ -35,6 +37,7 @@ public class ProductServiceBean {
     }
 
     @RequestMapping(value = "/{productid}", method = RequestMethod.GET, produces = "application/json")
+    @PreAuthorize(value = "hasRole('ROLE_READ')")
     public ProductDTO getProduct(@PathVariable("productid") final Long productId) {
         final Product product = productRepository.findOne(productId);
         final ProductDTO productDTO;

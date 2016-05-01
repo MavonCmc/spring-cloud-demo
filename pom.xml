@@ -23,7 +23,7 @@
         <platform-bom.version>2.0.3.RELEASE</platform-bom.version>
         <spring-cloud-config.version>1.0.4.RELEASE</spring-cloud-config.version>
         <spring-cloud-netflix.version>1.0.7.RELEASE</spring-cloud-netflix.version>
-        <spring-cloud-bus-parent.version>1.0.3.RELEASE</spring-cloud-bus-parent.version>
+        <spring-cloud-stream-parent.version>1.0.0.RC2</spring-cloud-stream-parent.version>
         <spring-boot-admin.version>1.3.2</spring-boot-admin.version>
     </properties>
 
@@ -57,11 +57,11 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- spring cloud bus -->
+            <!-- spring cloud stream -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-bus-parent</artifactId>
-                <version>${spring-cloud-bus-parent.version}</version>
+                <artifactId>spring-cloud-stream-parent</artifactId>
+                <version>${spring-cloud-stream-parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -99,5 +99,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- needed, because spring cloud stream is RC2 -->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 
 </project>
