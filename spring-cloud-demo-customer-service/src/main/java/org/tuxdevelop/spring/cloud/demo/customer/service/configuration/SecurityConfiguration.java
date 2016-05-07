@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
+                .antMatchers("/health")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()

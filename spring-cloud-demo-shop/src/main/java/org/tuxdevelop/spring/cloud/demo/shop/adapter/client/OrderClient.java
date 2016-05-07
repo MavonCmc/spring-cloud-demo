@@ -13,6 +13,6 @@ import java.util.List;
 public interface OrderClient {
 
     @RequestMapping(value = "/orders/customers/{customernumber}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Order> getOrdersByCustomerId(@PathVariable("customernumber") Long customerid);
+    List<Order> getOrdersByCustomerNumber(@PathVariable("customernumber") Long customerid);
 
 }

@@ -15,13 +15,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureGlobal(final AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
                 .inMemoryAuthentication()
-                .withUser("cloudShop").password("cloudShop").roles("READ");
+                .withUser("cloudShop").password("cloudShop").roles("READ")
+                .and()
+                .withUser("admin").password("admin").roles("READ", "WRITE");
     }
 
     @Override
     public void configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
+                .antMatchers("/health")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()

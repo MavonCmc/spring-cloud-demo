@@ -18,7 +18,7 @@ public class CacheConfiguration {
         final GuavaCacheManager cacheManager = new GuavaCacheManager();
         cacheManager.setCacheBuilder(CacheBuilder
                 .newBuilder()
-                .expireAfterAccess(10, TimeUnit.SECONDS)
+                .expireAfterAccess(5, TimeUnit.SECONDS)
                 .maximumSize(10));
         return cacheManager;
     }

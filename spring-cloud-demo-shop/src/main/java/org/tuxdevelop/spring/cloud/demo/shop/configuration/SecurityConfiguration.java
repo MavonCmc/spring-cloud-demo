@@ -13,15 +13,20 @@ public class SecurityConfiguration {
     @Configuration
     static class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-        //TODO: field injection is evil
-        @Autowired
         private AuthenticationManager remoteAuthenticationManager;
+
+        @Autowired
+        public void setRemoteAuthenticationManager(final AuthenticationManager remoteAuthenticationManager) {
+            this.remoteAuthenticationManager = remoteAuthenticationManager;
+        }
 
         @Override
         public void configure(final HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers("/", "/index", "/registrations", "/login", "/img/**").permitAll()
+                    .antMatchers("/", "/index", "/registrations", "/login", "/img/**", "/hystrix.stream", "/hystrix/**",
+                            "/management/**")
+                    .permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()

@@ -29,7 +29,9 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right navbar-collapse collapse">
                         <li class="navbar-link"><a href="#" th:href="@{index}">Home</a></li>
-                        <li class="navbar-link"><a href="#" th:href="@{registrations}">Register</a></li>
+                        <li class="navbar-link" th:if="${#httpServletRequest.remoteUser == null}">
+                            <a href="#" th:href="@{registrations}">Register</a>
+                        </li>
                         <li class="navbar-link"><a href="#" th:href="@{shop}">Shop</a></li>
                         <li th:if="${#httpServletRequest.remoteUser != null}" class="navbar-link">
                             <a href="#"

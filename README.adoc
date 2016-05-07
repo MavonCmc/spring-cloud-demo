@@ -13,3 +13,4 @@ Demo Project to illustrate the Spring Cloud Features within a distributed System
 * Order Service
 * Product Service
 * Shop System
+* Spring Boot Admin
